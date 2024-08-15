@@ -80,9 +80,13 @@ GEM
     marcel (1.0.2)
     method_source (1.0.0)
     mini_mime (1.1.2)
+    mini_portile2 (2.8.7)
     minitest (5.16.2)
     msgpack (1.5.4)
     nio4r (2.5.8)
+    nokogiri (1.13.8)
+      mini_portile2 (~> 2.8.0)
+      racc (~> 1.4)
     nokogiri (1.13.8-x86_64-darwin)
       racc (~> 1.4)
     puma (4.3.12)
@@ -149,7 +153,9 @@ GEM
       actionpack (>= 5.2)
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
-    sqlite3 (1.4.4)
+    sqlite3 (1.6.9)
+      mini_portile2 (~> 2.8.0)
+    sqlite3 (1.6.9-x86_64-darwin)
     thor (1.2.1)
     thread_safe (0.3.6)
     tzinfo (1.2.10)
@@ -160,6 +166,7 @@ GEM
     zeitwerk (2.6.0)
 
 PLATFORMS
+  ruby
   x86_64-darwin-21
 
 DEPENDENCIES
@@ -171,7 +178,7 @@ DEPENDENCIES
   rspec-rails (~> 5.1, >= 5.1.2)
   spring
   spring-watcher-listen (~> 2.0.0)
-  sqlite3 (~> 1.4)
+  sqlite3 (~> 1.6, >= 1.6.9)
   tzinfo-data
 
 RUBY VERSION
