@@ -1,6 +1,5 @@
 class ArticlesController < ApplicationController
-    before_action :set_article, only: [:show, :update, :destroy]
-    
+
     # GET /articles
     def index
         @articles = Article.order(published_at: :desc)
@@ -9,16 +8,43 @@ class ArticlesController < ApplicationController
 
     # GET /articles/:id
     def show
+        @article = Article.find(params[:id])
+
         render json: @article
+        rescue ActiveRecord::RecordNotFound
+            head :not_found
+
+    end
+    
+    # POST /articles
+    def create
+        @article = Article.new(article_params)
+
+        if @article.save
+            render json: @article, status: :created, location: @article
+        else
+            render json: @article.errors, status: :unprocessable_entity
+        end
+    end
+
+    # PUT /articles/:id
+    # PATCH /articles/:id
+    def update
+        method_not_allowed
+    end
+
+    # DELETE /articles/:id
+    def destroy
+        method_not_allowed
     end
 
     private
 
-    def set_article
-        @article = Article.find(params[:id])
+    def method_not_allowed
+        head :method_not_allowed
     end
 
     def article_params
-        params.require(:article).permit(:title, :content, :author, :category, :published_at)
+        params.permit(:title, :content, :author, :category, :published_at)
     end
 end
